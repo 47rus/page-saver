@@ -11,20 +11,18 @@
   "host_permissions": [
     "<all_urls>"
   ],
-  "action": {
-    "default_popup": "popup.html",
-    "default_icon": {
-      "16": "images/icon16.svg",
-      "48": "images/icon48.svg",
-      "128": "images/icon128.svg"
-    }
-  },
+  "action": {},
   "background": {
     "service_worker": "background.js"
   },
-  "icons": {
-    "16": "images/icon16.svg",
-    "48": "images/icon48.svg",
-    "128": "images/icon128.svg"
+  "options_page": "options.html",
+  "commands": {
+    "save-all-tabs": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+S",
+        "mac": "Command+Shift+S"
+      },
+      "description": "Save all tabs in the current window"
+    }
   }
 }

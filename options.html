@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page Saver Settings</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Settings</h1>
+
+    <div class="section">
+      <h2>Webhooks</h2>
+      <div class="input-group">
+        <label for="test-webhook">Test Webhook URL</label>
+        <input type="text" id="test-webhook" class="webhook-input">
+      </div>
+      <div class="input-group">
+        <label for="live-webhook">Live Webhook URL</label>
+        <input type="text" id="live-webhook" class="webhook-input">
+      </div>
+      <div class="toggle-group">
+        <label>Use Live Webhook</label>
+        <label class="switch">
+          <input type="checkbox" id="webhook-switch">
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Sending Mode</h2>
+      <div class="toggle-group">
+        <label>Send All Tabs (otherwise, only the active tab will be sent)</label>
+        <label class="switch">
+          <input type="checkbox" id="mode-switch">
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <div id="status-message"></div>
+  </div>
+  <script src="options.js"></script>
+</body>
+</html>
