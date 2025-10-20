@@ -64,7 +64,35 @@ async function sendTabs() {
     try {
       const [result] = await chrome.scripting.executeScript({
         target: { tabId: tab.id },
-        function: () => document.documentElement.outerHTML,
+        function: () => {
+          function getAllText(node) {
+            let text = '';
+            // 1. Node is a text node, get its content
+            if (node.nodeType === Node.TEXT_NODE) {
+              text += node.textContent.trim() + ' ';
+            } 
+            // 2. Node is an element, process it
+            else if (node.nodeType === Node.ELEMENT_NODE) {
+              // Ignore script and style tags
+              if (node.tagName.toLowerCase() !== 'script' && node.tagName.toLowerCase() !== 'style') {
+                // Process children
+                if (node.childNodes && node.childNodes.length > 0) {
+                  for (const child of node.childNodes) {
+                    text += getAllText(child);
+                  }
+                }
+                // Process shadow root if it exists
+                if (node.shadowRoot) {
+                  for (const child of node.shadowRoot.childNodes) {
+                    text += getAllText(child);
+                  }
+                }
+              }
+            }
+            return text;
+          }
+          return getAllText(document.body);
+        },
       });
 
       const pageContent = result.result;
